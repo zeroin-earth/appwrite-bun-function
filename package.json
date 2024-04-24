@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "start": "bun run src/index.ts",
-    "build": "bun build src/index.ts --outdir ./dist --minify"
+    "build": "bun build src/index.ts --outdir ./dist --minify --target bun"
   },
   "dependencies": {
     "node-appwrite": "^12.0.0"
