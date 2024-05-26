@@ -5,19 +5,20 @@ export type AppwriteContext = {
   error: (message: string) => void
 }
 
+type Headers =
+  | 'x-appwrite-trigger'
+  | 'x-appwrite-event'
+  | 'x-appwrite-user-id'
+  | 'x-appwrite-user-jwt'
+  | 'x-appwrite-country-code'
+  | 'x-appwrite-continent-code'
+  | 'x-appwrite-continent-eu'
+  | (string & {})
+
 type AppwriteRequest = {
   bodyRaw: string
   body: Record<string, any>
-  /**
-   * x-appwrite-trigger,
-   * x-appwrite-event,
-   * x-appwrite-user-id,
-   * x-appwrite-user-jwt,
-   * x-appwrite-country-code,
-   * x-appwrite-continent-code,
-   * x-appwrite-continent-eu
-   */
-  headers: Record<string, string>
+  headers: Record<Headers, string>
   scheme: string
   method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH'
   url: string
