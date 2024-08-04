@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 export type AppwriteContext = {
   req: AppwriteRequest
   res: AppwriteResponse
@@ -13,7 +14,7 @@ type Headers =
   | 'x-appwrite-country-code'
   | 'x-appwrite-continent-code'
   | 'x-appwrite-continent-eu'
-  | (string & {})
+  | string
 
 type AppwriteRequest = {
   bodyRaw: string
