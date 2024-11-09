@@ -1,4 +1,5 @@
-/* eslint-disable @typescript-eslint/ban-types */
+import type { Models } from 'node-appwrite'
+
 export type AppwriteContext = {
   req: AppwriteRequest
   res: AppwriteResponse
@@ -6,20 +7,21 @@ export type AppwriteContext = {
   error: (message: string) => void
 }
 
-type Headers =
-  | 'x-appwrite-trigger'
-  | 'x-appwrite-event'
-  | 'x-appwrite-user-id'
-  | 'x-appwrite-user-jwt'
-  | 'x-appwrite-country-code'
-  | 'x-appwrite-continent-code'
-  | 'x-appwrite-continent-eu'
-  | string
+export type Headers = {
+  'x-appwrite-trigger'?: string
+  'x-appwrite-event'?: string
+  'x-appwrite-user-id'?: string
+  'x-appwrite-user-jwt'?: string
+  'x-appwrite-country-code'?: string
+  'x-appwrite-continent-code'?: string
+  'x-appwrite-continent-eu'?: string
+  [key: string]: string | undefined
+}
 
 type AppwriteRequest = {
   bodyRaw: string
-  body: Record<string, any>
-  headers: Record<Headers, string>
+  body: string
+  headers: Headers
   scheme: string
   method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH'
   url: string
@@ -35,4 +37,15 @@ type AppwriteResponse = {
   json: (body: Record<string, any>) => void
   redirect: (url: string, status?: number) => void
   send: (body: string, status?: number, headers?: Record<string, string>) => void
+}
+
+export type Story = Models.Document & {
+  fileId: string
+  url: string
+  reqStories?: string[]
+  reqAge?: number
+  reqDate?: [string, string]
+  priority: number
+  oneTime?: boolean
+  enabled: boolean
 }

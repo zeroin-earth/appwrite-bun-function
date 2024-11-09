@@ -18,6 +18,8 @@ export default async (context: AppwriteContext) => {
 
   if (req.headers['x-appwrite-user-jwt']) {
     client.setJWT(req.headers['x-appwrite-user-jwt'])
+  } else if (req.headers['x-appwrite-key']) {
+    client.setKey(req.headers['x-appwrite-key'])
   } else {
     error('JWT not found')
     return res.send('Please sign in, JWT not found', 401)
