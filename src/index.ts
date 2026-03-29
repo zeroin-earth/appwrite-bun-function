@@ -31,6 +31,7 @@ export default async (context: AppwriteContext) => {
       default:
         error(`Invalid operation: ${req.path}`)
     }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (e: any) {
     error('Failed to run service: ' + e.message)
     return res.send('Failed!', 500)
